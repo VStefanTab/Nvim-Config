@@ -62,26 +62,28 @@ return {
         }
       end
 
-      -- Add Python Debug Adapter Configuration
-      dap.adapters.python = {
-        type = "server",
-        host = "localhost",
-        port = 5678,
-      }
-
-      dap.configurations.python = {
-        {
-          name = "Launch File",
-          type = "python",
-          request = "launch",
-          program = "${file}",
-          pythonPath = function()
-            return vim.fn.input('Python interpreter path: ', vim.fn.exepath('python3'))
-          end,
-        },
-      }
-
-      -- Configure codelldb for C++
+      -- Python debugger
+--      dap.adapters.python = {
+--        type = "executable",
+--        command = "python3", -- Change to 'python' if you're using Python 2 or another environment
+--        args = { "-m", "debugpy.adapter" },
+--      }
+--
+--      dap.configurations.python = {
+--        {
+--          -- The current file will be used as the program to debug
+--          type = "python",
+--          request = "launch",
+--          name = "Launch File",
+--          program = "${file}", -- This will be the current file in the buffer
+--          pythonPath = function()
+--            -- Use the default Python path or ask the user for the interpreter path
+--            return vim.fn.input("Python interpreter path: ", vim.fn.exepath("python3"), "file")
+--          end,
+--        },
+--      }
+--
+--      -- Configure codelldb for C++
       local codelldb_path = vim.fn.exepath("codelldb")
       if codelldb_path ~= "" then
         dap.adapters.lldb = {
@@ -132,7 +134,7 @@ return {
       end
       dap.listeners.before.launch.dapui_config = function()
         ui.open()
-        nvim_tree.close()
+        -- nvim_tree.close()
       end
       dap.listeners.before.event_terminated.dapui_config = function()
         ui.close()
