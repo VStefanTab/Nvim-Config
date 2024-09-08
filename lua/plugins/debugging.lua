@@ -1,21 +1,31 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    enabled = true,
     dependencies = {
       "leoluz/nvim-dap-go",
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "williamboman/mason.nvim",
+      "jay-babu/mason-nvim-dap.nvim",  -- Adds Mason integration for nvim-dap
     },
     config = function()
       local dap = require("dap")
       local ui = require("dapui")
-      local nvim_tree = require("neo-tree")
 
+      -- DAP UI and Go setup
       require("dapui").setup()
       require("dap-go").setup()
 
+      -- Mason-nvim-dap setup
+      require("mason-nvim-dap").setup({
+        -- Automatically install configured debuggers
+        ensure_installed = { "python", "delve", "codelldb" },  -- Specify the debuggers you want Mason to manage
+        handlers = {},
+      })
+
+      -- Virtual text setup for DAP
       require("nvim-dap-virtual-text").setup({
         display_callback = function(variable)
           local name = string.lower(variable.name)
@@ -32,91 +42,24 @@ return {
         end,
       })
 
-      -- Handled by nvim-dap-go
-      -- dap.adapters.go = {
-      --   type = "server",
-      --   port = "${port}",
-      --   executable = {
-      --     command = "dlv",
-      --     args = { "dap", "-l", "127.0.0.1:${port}" },
-      --   },
-      -- }
-
-      local elixir_ls_debugger = vim.fn.exepath("elixir-ls-debugger")
-      if elixir_ls_debugger ~= "" then
-        dap.adapters.mix_task = {
-          type = "executable",
-          command = elixir_ls_debugger,
-        }
-
-        dap.configurations.elixir = {
-          {
-            type = "mix_task",
-            name = "phoenix server",
-            task = "phx.server",
-            request = "launch",
-            projectDir = "${workspaceFolder}",
-            exitAfterTaskReturns = false,
-            debugAutoInterpretAllModules = false,
-          },
-        }
+      -- Automatically open/close DAP UI on debugging events
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        ui.open()
+        vim.cmd("Neotree close")
       end
 
-      -- Python debugger
---      dap.adapters.python = {
---        type = "executable",
---        command = "python3", -- Change to 'python' if you're using Python 2 or another environment
---        args = { "-m", "debugpy.adapter" },
---      }
---
---      dap.configurations.python = {
---        {
---          -- The current file will be used as the program to debug
---          type = "python",
---          request = "launch",
---          name = "Launch File",
---          program = "${file}", -- This will be the current file in the buffer
---          pythonPath = function()
---            -- Use the default Python path or ask the user for the interpreter path
---            return vim.fn.input("Python interpreter path: ", vim.fn.exepath("python3"), "file")
---          end,
---        },
---      }
---
---      -- Configure codelldb for C++
-      local codelldb_path = vim.fn.exepath("codelldb")
-      if codelldb_path ~= "" then
-        dap.adapters.lldb = {
-          type = "server",
-          port = "${port}",
-          executable = {
-            command = codelldb_path,
-            args = { "--port", "${port}" },
-          },
-        }
-
-        dap.configurations.cpp = {
-          {
-            name = "Launch",
-            type = "lldb",
-            request = "launch",
-            program = function()
-              return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-            end,
-            cwd = "${workspaceFolder}",
-            stopOnEntry = false,
-            args = {},
-            runInTerminal = true, -- Optional
-          },
-        }
-
-        dap.configurations.c = dap.configurations.cpp -- Use the same config for C
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        ui.close()
+        vim.cmd("Neotree open")
       end
 
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        ui.close()
+      end
+
+      -- Keymaps for debugging
       vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
       vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
-
-      -- Eval var under cursor
       vim.keymap.set("n", "<space>?", function()
         require("dapui").eval(nil, { enter = true })
       end)
@@ -127,23 +70,6 @@ return {
       vim.keymap.set("n", "<F4>", dap.step_out)
       vim.keymap.set("n", "<F5>", dap.step_back)
       vim.keymap.set("n", "<F13>", dap.restart)
-
-      dap.listeners.before.attach.dapui_config = function()
-        ui.open()
-        nvim_tree.close()
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        ui.open()
-        -- nvim_tree.close()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        ui.close()
-        nvim_tree.open()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        ui.close()
-        nvim_tree.open()
-      end
     end,
   },
 }
