@@ -70,6 +70,12 @@ return {
 			vim.keymap.set("n", "<F4>", dap.step_out)
 			vim.keymap.set("n", "<F5>", dap.step_back)
 			vim.keymap.set("n", "<F13>", dap.restart)
+			vim.keymap.set("n", "DE", function()
+				dap.terminate()
+				dap.repl.close()
+				ui.close()
+				vim.cmd("Neotree open")
+			end)
 		end,
 	},
 }
