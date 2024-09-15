@@ -6,7 +6,10 @@ vim.cmd("set number relativenumber")
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<C-W>", ":update<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Esc><Esc>",":q<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Esc><Esc>", ":q<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -26,8 +29,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	spec = {
 		-- add LazyVim and import its plugins
-	  --{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    --{ import = "lazyvim.plugins.extras.dap.core" },
+		--{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		--{ import = "lazyvim.plugins.extras.dap.core" },
 		-- import/override with your plugins
 		{ import = "plugins" },
 	},
@@ -45,22 +48,22 @@ require("lazy").setup({
 		enabled = true, -- check for plugin updates periodically
 		notify = true, -- notify on update
 	}, -- automatically check for plugin updates
---	  performance = {
---	    rtp = {
---	      -- disable some rtp plugins
---	      disabled_plugins = {
---	        "gzip",
---	        -- "matchit",
---	        -- "matchparen",
---	        -- "netrwPlugin",
---	        "tarPlugin",
---	        "tohtml",
---	        "tutor",
---	        "zipPlugin",
---          "tokyonight",
---          "persistance",
---
---	      },
---	    },
---	  },
+	--	  performance = {
+	--	    rtp = {
+	--	      -- disable some rtp plugins
+	--	      disabled_plugins = {
+	--	        "gzip",
+	--	        -- "matchit",
+	--	        -- "matchparen",
+	--	        -- "netrwPlugin",
+	--	        "tarPlugin",
+	--	        "tohtml",
+	--	        "tutor",
+	--	        "zipPlugin",
+	--          "tokyonight",
+	--          "persistance",
+	--
+	--	      },
+	--	    },
+	--	  },
 })
