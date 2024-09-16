@@ -50,7 +50,7 @@ return {
 
 			dap.listeners.before.event_terminated["dapui_config"] = function()
 				ui.close()
-				vim.cmd("Neotree open")
+				vim.cmd("Neotree toggle")
 			end
 
 			dap.listeners.before.event_exited["dapui_config"] = function()
@@ -70,11 +70,11 @@ return {
 			vim.keymap.set("n", "<F4>", dap.step_out)
 			vim.keymap.set("n", "<F5>", dap.step_back)
 			vim.keymap.set("n", "<F13>", dap.restart)
-			vim.keymap.set("n", "DE", function()
-				dap.terminate()
+			vim.keymap.set("n", "<F9>", function()
+				vim.cmd("DapTerminate")
 				dap.repl.close()
 				ui.close()
-				vim.cmd("Neotree open")
+				vim.cmd("Neotree toggle")
 			end)
 		end,
 	},
