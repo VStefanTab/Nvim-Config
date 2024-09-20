@@ -1,6 +1,6 @@
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
+vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=2")
 vim.cmd("set number relativenumber")
 vim.g.mapleader = " "
@@ -30,7 +30,8 @@ require("lazy").setup({
 	spec = {
 		-- add LazyVim and import its plugins
 		--{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
-		--{ import = "lazyvim.plugins.extras.dap.core" },
+		{"LazyVim/LazyVim"},
+    {import = "lazyvim.plugins.extras.lang.rust"},
 		-- import/override with your plugins
 		{ import = "plugins" },
 	},
@@ -43,7 +44,7 @@ require("lazy").setup({
 		version = false, -- always use the latest git commit
 		-- version = "*", -- try installing the latest stable version for plugins that support semver
 	},
-	--install = { colorscheme = { "tokyonight", "habamax" } },
+	install = { colorscheme = { "tokyonight", "habamax" } },
 	checker = {
 		enabled = true, -- check for plugin updates periodically
 		notify = true, -- notify on update
