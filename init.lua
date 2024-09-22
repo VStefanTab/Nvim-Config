@@ -3,6 +3,9 @@ vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=2")
 vim.cmd("set number relativenumber")
+
+vim.opt.mouse = "nv"
+
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<C-W>", ":update<CR>", { noremap = true, silent = true })
