@@ -12,7 +12,7 @@ return {
             color = "error", -- can be a hex color, or a named color
             alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- alternative keywords
           },
-          TODO = { icon = " ", color = "info" },
+          TODO = { icon = " ", alt = {"DONE"}, color = "info" },
           HACK = { icon = " ", color = "warning" },
           WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
           PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
