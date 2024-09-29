@@ -12,6 +12,8 @@ vim.keymap.set("n", "<Esc><Esc>", ":q<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>p", '"0p', {noremap = true, silent = true})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
