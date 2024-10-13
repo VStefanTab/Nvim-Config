@@ -2,4 +2,4 @@
 
 # Prerequisites: luarocks
 
-# Use checkhealth and install the requirements
+# Use :checkhealth and install the requirements
