@@ -83,15 +83,15 @@ return {
 			})
 
 			-- Automatically open/close DAP UI on debugging events
-			dap.listeners.after.event_initialized["dapui_config"] = function()
-				ui.open()
-				vim.cmd("Neotree close")
-			end
+			--dap.listeners.after.event_initialized["dapui_config"] = function()
+			--	ui.open()
+			--	vim.cmd("Neotree close")
+			--end
 
-			dap.listeners.before.event_terminated["dapui_config"] = function()
-				ui.close()
-				vim.cmd("Neotree toggle")
-			end
+			--dap.listeners.before.event_terminated["dapui_config"] = function()
+			--	ui.close()
+			--	vim.cmd("Neotree toggle")
+			--end
 
 			dap.listeners.before.event_exited["dapui_config"] = function()
 				ui.close()
@@ -143,7 +143,7 @@ return {
 				vim.cmd("DapTerminate")
 				dap.repl.close()
 				ui.close()
-				vim.cmd("Neotree toggle")
+				--vim.cmd("Neotree toggle")
 			end)
 		end,
 	},
