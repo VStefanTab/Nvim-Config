@@ -10,7 +10,6 @@ vim.wo.relativenumber = true
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<C-W>", ":update<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<Esc><Esc>", ":q<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
