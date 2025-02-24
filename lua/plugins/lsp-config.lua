@@ -37,6 +37,35 @@ return {
       lspconfig.pyright.setup({
         capabilities = capabilities,
       })
+      lspconfig.cmake.setup({
+        capabilities = capabilities,
+        cmd = { "cmake-language-server" },
+        filetypes = { "cmake" },
+        init_options = {
+          buildDirectory = "build"
+        }
+      })
+      lspconfig.bashls.setup({
+        capabilities = capabilities
+      })
+      lspconfig.zls.setup({
+        capabilities = capabilities,
+        settings = {
+          zls = {
+            -- Whether to enable build-on-save diagnostics
+            --
+            -- Further information about build-on save:
+            -- https://zigtools.org/zls/guides/build-on-save/
+            -- enable_build_on_save = true,
+
+            -- Neovim already provides basic syntax highlighting
+            semantic_tokens = "partial",
+
+            -- omit the following line if `zig` is in your PATH
+            zig_exe_path = "/path/to/zig_executable",
+          },
+        },
+      })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
