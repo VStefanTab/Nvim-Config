@@ -60,11 +60,14 @@ return {
 
             -- Neovim already provides basic syntax highlighting
             semantic_tokens = "partial",
-
-            -- omit the following line if `zig` is in your PATH
-            zig_exe_path = "/path/to/zig_executable",
           },
         },
+      })
+      lspconfig.r_language_server.setup({
+        capabilities = capabilities,
+        cmd = { "R", "--slave", "-e", "languageserver::run()" },
+        filetypes = { "r", "rmd" },
+        log_level = 2,
       })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
