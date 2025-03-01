@@ -48,6 +48,9 @@ return {
       lspconfig.bashls.setup({
         capabilities = capabilities
       })
+      lspconfig.omnisharp.setup({
+        capabilities = capabilities
+      })
       lspconfig.zls.setup({
         capabilities = capabilities,
         settings = {
