@@ -45,6 +45,9 @@ return {
 					buildDirectory = "build",
 				},
 			})
+      lspconfig.jdtls.setup({
+        capabilities = capabilities,
+      })
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})
@@ -52,7 +55,9 @@ return {
 				cmd = { vim.fn.expand("~/.local/share/nvim/mason/bin/omnisharp") },
 				root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", "*.cs") or vim.fn.getcwd(),
 			})
-
+      lspconfig.lemminx.setup({
+        capabilities = capabilities
+      })
 			lspconfig.zls.setup({
 				capabilities = capabilities,
 				settings = {
