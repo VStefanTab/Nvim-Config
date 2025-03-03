@@ -7,14 +7,35 @@ vim.cmd("set shiftwidth=2")
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+-- Leadr key
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<C-W>", ":update<CR>", { noremap = true, silent = true })
-
+-- Moving half screen down/up
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>p", '"0p', {noremap = true, silent = true})
+-- SplitScreen keys
+vim.keymap.set("n", "<Leader>-", ":split<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>|", ":vsplit<CR>", { noremap = true, silent = true })
+
+-- Moving through split screens
+vim.keymap.set("n", "<Leader>h", "<C-w>h", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>l", "<C-w>l", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>j", "<C-w>j", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>k", "<C-w>k", { noremap = true, silent = true })
+
+-- Resizing split screens
+vim.o.equalalways = true
+vim.keymap.set("n", "<Leader>=", "<C-w>=", { noremap = true, silent = true })                        -- Equalize
+vim.keymap.set("n", "<Leader><Up>", ":resize +5<CR>", { noremap = true, silent = true })             -- Increase height
+vim.keymap.set("n", "<Leader><Down>", ":resize -5<CR>", { noremap = true, silent = true })           -- Decrease height
+vim.keymap.set("n", "<Leader><Left>", ":vertical resize -5<CR>", { noremap = true, silent = true })  -- Decrease width
+vim.keymap.set("n", "<Leader><Right>", ":vertical resize +5<CR>", { noremap = true, silent = true }) -- Increase width
+
+-- Killing every window except the focused one
+vim.keymap.set("n", "<Leader>a", ":only<CR>", { noremap = true, silent = true })
+
+--vim.keymap.set("n", "<leader>p", '"0p', {noremap = true, silent = true})
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -49,7 +70,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  --install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = true, -- notify on update
