@@ -18,22 +18,40 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>-", ":split<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Leader>|", ":vsplit<CR>", { noremap = true, silent = true })
 
--- Moving through split screens
-vim.keymap.set("n", "<Leader>h", "<C-w>h", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>l", "<C-w>l", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>j", "<C-w>j", { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>k", "<C-w>k", { noremap = true, silent = true })
+-- Navigate between splits
+vim.keymap.set("n", "<Leader>h", ":wincmd h<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>l", ":wincmd l<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>j", ":wincmd j<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Leader>k", ":wincmd k<CR>", { noremap = true, silent = true })
 
 -- Resizing split screens
 vim.o.equalalways = true
-vim.keymap.set("n", "<Leader>=", "<C-w>=", { noremap = true, silent = true })                        -- Equalize
-vim.keymap.set("n", "<Leader><Up>", ":resize +5<CR>", { noremap = true, silent = true })             -- Increase height
-vim.keymap.set("n", "<Leader><Down>", ":resize -5<CR>", { noremap = true, silent = true })           -- Decrease height
-vim.keymap.set("n", "<Leader><Left>", ":vertical resize -5<CR>", { noremap = true, silent = true })  -- Decrease width
-vim.keymap.set("n", "<Leader><Right>", ":vertical resize +5<CR>", { noremap = true, silent = true }) -- Increase width
+vim.keymap.set("n", "<Leader>=", "<C-w>=", { noremap = true, silent = true }) -- Equalize
 
--- Killing every window except the focused one
-vim.keymap.set("n", "<Leader>a", ":only<CR>", { noremap = true, silent = true })
+-- Resize the current split window
+vim.keymap.set("n", "<Leader><Up>", ":wincmd +<CR>", { noremap = true, silent = true })     -- Increase height
+vim.keymap.set("n", "<Leader><Down>", ":wincmd -<CR>", { noremap = true, silent = true })   -- Decrease height
+vim.keymap.set("n", "<Leader><Left>", ":wincmd < <CR>", { noremap = true, silent = true })  -- Decrease width
+vim.keymap.set("n", "<Leader><Right>", ":wincmd > <CR>", { noremap = true, silent = true }) -- Increase width
+
+-- Maximizing focused screen
+local is_maximized = false
+
+function ToggleFullscreen()
+  if is_maximized then
+    vim.cmd("wincmd =") -- Restore original layout
+    is_maximized = false
+  else
+    vim.cmd("wincmd |") -- Maximize width
+    vim.cmd("wincmd _") -- Maximize height
+    is_maximized = true
+  end
+end
+
+vim.keymap.set("n", "<Leader>m", ToggleFullscreen, { noremap = true, silent = true }) -- Maximize fullscreen
+
+-- Close all other windows except the current one
+vim.keymap.set("n", "<Leader>a", ":wincmd o<CR>", { noremap = true, silent = true }) -- Close others
 
 --vim.keymap.set("n", "<leader>p", '"0p', {noremap = true, silent = true})
 
@@ -89,7 +107,6 @@ require("lazy").setup({
   --	        "zipPlugin",
   --          "tokyonight",
   --          "persistance",
-  --
   --	      },
   --	    },
   --	  },
