@@ -10,6 +10,9 @@ vim.wo.relativenumber = true
 -- Leadr key
 vim.g.mapleader = " "
 
+-- Terminal Exit 
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>",{ noremap = true, silent = true})
+
 -- Moving half screen down/up
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
