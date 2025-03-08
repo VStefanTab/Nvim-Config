@@ -75,7 +75,6 @@ return {
       })
       lspconfig.r_language_server.setup({
         capabilities = capabilities,
-        cmd = { "R", "--slave", "-e", "languageserver::run()" },
         filetypes = { "r", "rmd" },
         log_level = 2,
       })
