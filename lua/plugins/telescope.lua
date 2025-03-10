@@ -14,6 +14,8 @@ return {
 				{ desc = "Live Grep" }
 			)
 			vim.keymap.set("n", "<leader>fc", builtin.live_grep, {})
+      vim.keymap.set("n", "<leader>fs", builtin.lsp_document_symbols, {})
+      vim.keymap.set("n", "<leader>fw", builtin.grep_string, {})
 		end,
 	},
 	{
