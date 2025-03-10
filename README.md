@@ -1,5 +1,8 @@
-# Version needed: >0.9
+# Version needed:
+>0.9
 
-# Prerequisites: luarocks
+# Prerequisites: 
+luarocks(optional)
 
-# Use :checkhealth and install the requirements
+# Requirements:
+Use :checkhealth and install the requirements
