@@ -9,8 +9,8 @@ return {
 		require("catppuccin").setup({
 			custom_highlights = {
 				-- Customize line numbers
-				LineNr = { fg = "#7a49a5" }, -- Change line numbers to this color
-				CursorLineNr = { fg = "#50FA7B" }, -- Change cursor line number to this color
+				LineNr = { fg = "#be9225" }, -- Change line numbers to this color
+				CursorLineNr = { fg = "#25be92" }, -- Change cursor line number to this color
 
 				-- Customize comments
 				Comment = { fg = "#bc8dbc", italic = true }, -- Change comment color and make it italic (optional)

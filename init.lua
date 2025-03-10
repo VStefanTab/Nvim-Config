@@ -6,6 +6,7 @@ vim.cmd("set shiftwidth=2")
 -- Enable line numbers and relative numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.wo.cursorline = true
 
 -- Leadr key
 vim.g.mapleader = " "
