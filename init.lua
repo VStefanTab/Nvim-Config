@@ -8,8 +8,13 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 
--- Leadr key
+-- Leader key
 vim.g.mapleader = " "
+
+-- Change word everywhere locally
+-- :%s/search_word/replace_word/g
+-- :%s/search_word/replace_word/gc -> this is for confirmation
+
 
 -- Terminal Exit
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
