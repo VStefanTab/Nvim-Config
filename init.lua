@@ -29,6 +29,15 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 
+-- Folding functuins
+
+-- Enable Treesitter folding
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Optional: Set fold level (how deeply the folds should be open by default)
+vim.o.foldlevel = 99
+
 -- SplitScreen keys
 vim.keymap.set(
 	"n",
