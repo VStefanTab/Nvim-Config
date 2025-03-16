@@ -12,12 +12,23 @@ return {
             color = "error", -- can be a hex color, or a named color
             alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- alternative keywords
           },
-          TODO = { icon = " ", alt = {"DONE"}, color = "info" },
+          TODO = { icon = " ", alt = { "DONE" }, color = "info" },
           HACK = { icon = " ", color = "warning" },
-          WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-          PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+          WARN = {
+            icon = " ",
+            color = "warning",
+            alt = { "WARNING", "XXX" },
+          },
+          PERF = {
+            icon = " ",
+            alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
+          },
           NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-          TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+          TEST = {
+            icon = "⏲ ",
+            color = "test",
+            alt = { "TESTING", "PASSED", "FAILED" },
+          },
         },
         gui_style = {
           fg = "NONE", -- The gui style to use for the fg highlight group.

@@ -51,6 +51,11 @@ return {
         col = 1,
       },
     })
-    vim.keymap.set("n", "<Leader>gtb", ":Gitsigns blame<CR>", { noremap = true, silent = true })
+    vim.keymap.set(
+      "n",
+      "<Leader>gtb",
+      ":Gitsigns blame<CR>",
+      { noremap = true, silent = true }
+    )
   end,
 }
