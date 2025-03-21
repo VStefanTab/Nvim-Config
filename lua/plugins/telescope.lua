@@ -7,6 +7,13 @@ return {
       "nvim-telescope/telescope-live-grep-args.nvim",
     },
     config = function()
+      require("telescope").setup{
+        defaults = {
+          vimgrep_arguments = {
+              "--hidden",
+          }
+        },
+      }
       local builtin = require("telescope.builtin")
 
       vim.keymap.set("n", "<C-p>", builtin.find_files, {})
