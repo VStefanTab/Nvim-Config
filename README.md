@@ -11,6 +11,3 @@
 
 Use :checkhealth and install the requirements
 
-# TODO:
-
-1. Make telescope see hidden files
