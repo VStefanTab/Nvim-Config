@@ -1,6 +1,6 @@
 # NVIM Version needed:
 
-> 0.9
+- 0.9
 
 # Prerequisites:
 

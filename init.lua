@@ -88,7 +88,7 @@ vim.keymap.set(
   { noremap = true, silent = true }
 )
 
--- Resizing split screens
+-- Resizing split screens equally
 vim.o.equalalways = true
 vim.keymap.set("n", "<Leader>=", "<C-w>=", { noremap = true, silent = true }) -- Equalize
 
@@ -145,7 +145,9 @@ vim.keymap.set(
   "<Leader>a",
   ":wincmd o<CR>",
   { noremap = true, silent = true }
-) -- Close others
+)
+
+-- TODO: Make a keybind to close the current one and leave the others
 
 -- TODO: Make keybinds for tabs
 
